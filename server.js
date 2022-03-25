@@ -1,5 +1,5 @@
 const app = require('./app');
-const connectDatapase = require('./config/database');
+const connectDatabase = require('./config/database');
 
 const dotenv = require('dotenv');
 
@@ -16,7 +16,7 @@ console.log(a);
 dotenv.config({ path: 'backend/config/config.env' })
 
 // Connecting to database
-connectDatapase();
+connectDatabase();
 
 // Handle unhandled promise rejections
 process.on('unhandledRejection', err => {

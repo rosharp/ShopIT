@@ -40,4 +40,4 @@ Thumbs.db
 .vscodium
 
 # Node #
-node-modules/
+node_modules/

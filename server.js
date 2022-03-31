@@ -20,7 +20,7 @@ connectDatabase();
 
 // Handle unhandled promise rejections
 process.on('unhandledRejection', err => {
-  console.log(`ERROR: ${err.message}`);
+  console.log(`ERROR: ${err.stack}`);
   console.log('Shutting down the server due to Unhandled Promise rejection');
   server.close(() => {
     process.exit(1);

@@ -1,8 +1,11 @@
-import React from "react";
+import React, { Fragment } from "react";
+
+import MetaData from "./layout/MetaData";
 
 export default function Home() {
   return (
-    <div className="container container-fluid">
+    <Fragment>
+      <MetaData title={`Buy Best Products Online`} />
       <h1 id="products_heading">Latest Products</h1>
 
       <section id="products" className="container mt-5">
@@ -31,6 +34,6 @@ export default function Home() {
 
         </div>
       </section>
-    </div>
+    </Fragment>
   )
 }

@@ -7,6 +7,7 @@
     "@testing-library/react": "^12.1.4",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.26.1",
+    "http-proxy-middleware": "^2.0.4",
     "react": "^18.0.0",
     "react-alert": "^7.0.3",
     "react-alert-template-basic": "^1.0.2",
@@ -45,5 +46,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "https://127.0.0.1:4000"
+  "proxy": "http://127.0.0.1:4000"
 }

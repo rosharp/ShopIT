@@ -2,8 +2,9 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
+
 import Home from './components/Home';
-import './App.css';
+import ProductDetails from './components/product/ProductDetails';
 
 export default function App() {
   return (
@@ -13,6 +14,7 @@ export default function App() {
 
         <Routes className="container container-fluid">
           <Route path="/" element={<Home />} exact />
+          <Route path="/product/:id" element={<ProductDetails />} exact />
         </Routes>
 
         <Footer />

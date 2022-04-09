@@ -1,5 +1,6 @@
 import React, { Fragment, useState, useEffect } from "react";
 import Pagination from 'react-js-pagination';
+import { useParams } from "react-router-dom";
 
 import MetaData from "./layout/MetaData";
 
@@ -17,7 +18,15 @@ export default function Home() {
   const alert = useAlert();
   const dispatch = useDispatch();
 
-  const { loading, products, error, productsCount, resPerPage } = useSelector(state => state.products);
+  const {
+    loading,
+    products,
+    error,
+    productsCount,
+    resPerPage
+  } = useSelector(state => state.products);
+
+  const { keyword } = useParams();
 
   useEffect(() => {
 
@@ -25,9 +34,9 @@ export default function Home() {
       return alert.error(error);
     }
 
-    dispatch(getProducts(currentPage));
+    dispatch(getProducts(keyword, currentPage));
 
-  }, [dispatch, currentPage, alert, error]);
+  }, [dispatch, currentPage, keyword, alert, error]);
 
   function setCurrentPageNo(pageNumber) {
     setCurrentPage(pageNumber)
@@ -51,19 +60,19 @@ export default function Home() {
           </section>
           {resPerPage <= productsCount && (
             <div className="d-flex justify-content-center mt-5">
-            <Pagination 
-              activePage={currentPage}
-              itemsCountPerPage={resPerPage}
-              totalItemsCount={productsCount}
-              onChange={setCurrentPageNo}
-              nextPageText={'Next'}
-              prevPageText={'Prev'}
-              firstPageText={'First'}
-              lastPageText={'Last'}
-              itemClass="page-item"
-              linkClass="page-link"
-            />
-          </div>
+              <Pagination
+                activePage={currentPage}
+                itemsCountPerPage={resPerPage}
+                totalItemsCount={productsCount}
+                onChange={setCurrentPageNo}
+                nextPageText={'Next'}
+                prevPageText={'Prev'}
+                firstPageText={'First'}
+                lastPageText={'Last'}
+                itemClass="page-item"
+                linkClass="page-link"
+              />
+            </div>
           )}
         </Fragment>
       )}

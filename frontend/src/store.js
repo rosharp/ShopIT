@@ -3,7 +3,7 @@ import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 import { productsReducer, productDetailsReducer } from './reducers/productsReducer';
-import { userReducer } from './reducers/userReducer'
+import { userReducer } from './reducers/userReducers'
 
 const reducer = combineReducers({
   products: productsReducer,

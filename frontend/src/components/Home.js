@@ -23,6 +23,7 @@ export default function Home() {
   const [price, setPrice] = useState([1, 1000])
   const [category, setCategory] = useState('');
   const [rating, setRating] = useState(0);
+  const [seller, setSeller] = useState('');
 
   const categories = [
     'Electronics',
@@ -37,6 +38,12 @@ export default function Home() {
     'Sports',
     'Outdoor',
     'Home'
+  ];
+
+  const sellers = [
+    'Amazon',
+    'Ebay',
+    "Kauffman's Fruit"
   ];
 
   const alert = useAlert();
@@ -59,9 +66,9 @@ export default function Home() {
       return alert.error(error);
     }
 
-    dispatch(getProducts(keyword, currentPage, price, category, rating));
+    dispatch(getProducts(keyword, currentPage, price, category, rating, seller));
 
-  }, [dispatch, alert, error, keyword, currentPage, price, category, rating]);
+  }, [dispatch, alert, error, keyword, currentPage, price, category, rating, seller]);
 
   function setCurrentPageNo(pageNumber) {
     setCurrentPage(pageNumber)
@@ -156,6 +163,31 @@ export default function Home() {
 
                                 </div>
                               </div>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      <hr className="my-3" />
+
+
+                      <div className="mt-5">
+                        <h4 className="mb-3">
+                          Sellers
+                        </h4>
+
+                        <ul className="pl-0">
+                          {sellers.map(seller => (
+                            <li
+                              style={{
+                                cursor: 'pointer',
+                                listStyleType: 'none'
+                              }}
+                              key={seller}
+                              onClick={() => setSeller(seller)
+                              }
+                            >
+                              {seller}
                             </li>
                           ))}
                         </ul>

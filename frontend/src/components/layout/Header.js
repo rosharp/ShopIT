@@ -54,24 +54,19 @@ const Header = () => {
               </Link>
 
               <div className="dropdown-menu" aria-labelledby="dropDownMenuButton">
-
                 {user && user.role !== 'admin' ? (
-
                   <Link className="dropdown-item" to="/orders/me">
                     Orders
                   </Link>
-
                 ) : (
-
                   <Link className="dropdown-menu" to="/dashboard">
                     Dashboard
                   </Link>
-
                 )}
+
                 <Link className="dropdown-menu" to="/me">
                   Profile
                 </Link>
-
                 <Link className="dropdown-item text-danger" to="/">
                   Logout
                 </Link>

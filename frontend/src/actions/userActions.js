@@ -55,7 +55,7 @@ export const register = (userData) => async (dispatch) => {
       }
     }
 
-    const { data } = await axios.post('/api/v1/register', userData, config)
+    const { data } = await axios.post('/api/v1/register', userData, { config })
 
     dispatch({
       type: REGISTER_USER_SUCCESS,

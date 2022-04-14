@@ -7,24 +7,20 @@ import Home from './components/Home';
 import ProductDetails from './components/product/ProductDetails';
 
 import Login from './components/user/login';
+import Register from './components/user/Register';
 
 export default function App() {
   return (
-    <Router>
-      <div className="App">
-        <Header />
-
-        <Routes className="container container-fluid">
-          <Route path="/" element={<Home />} exact />
-          <Route path="/search/:keyword" element={<Home />} />
-          <Route path="/product/:id" element={<ProductDetails />} exact />
-
-          <Route path="/login" element={<Login />} />
-
-        </Routes>
-
-        <Footer />
-      </div>
+    <Router className="App">
+      <Header />
+      <Routes className="container container-fluid">
+        <Route path="/" element={<Home />} exact />
+        <Route path="/search/:keyword" element={<Home />} />
+        <Route path="/product/:id" element={<ProductDetails />} exact />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+      </Routes>
+      <Footer />
     </Router>
   );
 }

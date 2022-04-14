@@ -8,6 +8,9 @@ import {
   CLEAR_ERRORS
 } from '../constants/userConstants';
 
+//: TODO authReducer
+
+
 export const userReducer = (state = { user: {} }, action) => {
   switch (action.type) {
     case LOGIN_REQUEST:

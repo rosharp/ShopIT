@@ -30,7 +30,7 @@ function Login() {
       alert.error(error)
       dispatch(clearErrors)
     }
-  }, [dispatch, alert, isAuthenticated, error])
+  }, [dispatch, alert, isAuthenticated, navigate, error])
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -79,7 +79,7 @@ function Login() {
                   LOGIN
                 </button>
 
-                <Link to="#" className="float-right mt-3">New User?</Link>
+                <Link to="/register" className="float-right mt-3">New User?</Link>
               </form>
             </div>
           </div>

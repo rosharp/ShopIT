@@ -10,6 +10,8 @@ import {
   LOAD_USER_REQUEST,
   LOAD_USER_SUCCESS,
   LOAD_USER_FAIL,
+  LOGOUT_SUCCESS,
+  LOGOUT_FAIL,
   CLEAR_ERRORS
 } from '../constants/userConstants';
 
@@ -81,12 +83,6 @@ export const loadUser = () => async (dispatch) => {
       type: LOAD_USER_REQUEST
     })
 
-    const config = {
-      headers: {
-        'Content-Type': 'multipart/form-data'
-      }
-    }
-
     const { data } = await axios.post('/api/v1/me')
 
     dispatch({
@@ -101,6 +97,29 @@ export const loadUser = () => async (dispatch) => {
     })
   }
 }
+
+// Logout user
+
+export const logout = () => async (dispatch) => {
+
+  try {
+    await axios.get('/api/v1/logout')
+
+    dispatch({
+      type: LOGOUT_SUCCESS,
+    })
+
+  } catch (error) {
+    dispatch({
+      type: LOGOUT_FAIL,
+      payload: error.response.data.message
+    })
+
+  }
+}
+
+
+
 
 // Clear Errors
 export const clearErrors = () => async (dispatch) => {

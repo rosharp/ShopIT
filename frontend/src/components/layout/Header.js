@@ -45,6 +45,7 @@ const Header = () => {
           {user ? (
 
             <div className="ml-4 dropdown d-inline">
+
               <Link
                 to="#!"
                 className="btn dropdown-toggle text-white"
@@ -63,33 +64,18 @@ const Header = () => {
               </Link>
 
               <div className="dropdown-menu" aria-labelledby="dropDownMenuButton">
-                {user && user.role !== 'admin' ? (
-                  <Link className="dropdown-item" to="/orders/me">
-                    Orders
-                  </Link>
+                {user && user.role !== 'Admin' ? (
+                  <Link className="dropdown-item" to="/orders/me">Orders</Link>
                 ) : (
-                  <Link className="dropdown-menu" to="/dashboard">
-                    Dashboard
-                  </Link>
+                  <Link className="dropdown-item" to="/dashboard">Dashboard</Link>
                 )}
-
-                <Link className="dropdown-menu" to="/me">
-                  Profile
-                </Link>
-                <Link className="dropdown-item text-danger" to="/" onClick={logoutHandler}>
-                  Logout
-                </Link>
+                <Link className="dropdown-item" to="/me">Profile</Link>
+                <Link className="dropdown-item text-danger" to="/" onClick={logoutHandler}>Logout</Link>
               </div>
             </div>
 
           ) : !loading &&
-
-          <Link to="/login"
-            className="btn ml-4"
-            id="login_btn">
-            Login
-          </Link>
-
+          <Link to="/login" className="btn ml-4" id="login_btn">Login</Link>
           }
 
         </div>

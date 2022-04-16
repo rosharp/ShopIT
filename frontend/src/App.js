@@ -9,7 +9,9 @@ import ProductDetails from './components/product/ProductDetails';
 
 import Login from './components/user/login';
 import Register from './components/user/Register';
+import Profile from './components/user/Profile';
 
+import ProtectedRoute from './components/route/ProtectedRoute';
 import { loadUser } from './actions/userActions';
 import store from './store';
 
@@ -28,6 +30,8 @@ export default function App() {
         <Route path="/product/:id" element={<ProductDetails />} exact />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/me" element={<Profile />} exact />
+        <ProtectedRoute path="/me" component={Profile} exact />
       </Routes>
       <Footer />
     </Router>

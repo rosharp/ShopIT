@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
@@ -15,7 +15,11 @@ import ProtectedRoute from './components/route/ProtectedRoute';
 import { loadUser } from './actions/userActions';
 import store from './store';
 
+import { useSelector } from "react-redux";
+
 export default function App() {
+
+  const { isAuthenticated, loading, user } = useSelector(state => state.auth)
 
   useEffect(() => {
     store.dispatch(loadUser())
@@ -30,8 +34,16 @@ export default function App() {
         <Route path="/product/:id" element={<ProductDetails />} exact />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/me" element={<Profile />} exact />
-        <ProtectedRoute path="/me" component={Profile} exact />
+
+        // TODO: How to make this route more consise?
+
+        <Route path="/me" element={
+          isAuthenticated ? (
+            <Profile />
+          ) : (
+            <Navigate replace to="/login" />
+          )
+        } />
       </Routes>
       <Footer />
     </Router>

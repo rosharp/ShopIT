@@ -48,7 +48,7 @@ const Header = () => {
 
               <Link
                 to="#!"
-                className="btn dropdown-toggle text-white"
+                className="btn dropdown-toggle text-white mr-4"
                 type="button"
                 id="dropDownMenuButton"
                 data-toggle="dropdown"

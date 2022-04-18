@@ -11,6 +11,8 @@ import Login from './components/user/login';
 import Register from './components/user/Register';
 import Profile from './components/user/Profile';
 import UpdateProfile from './components/user/UpdateProfile';
+import UpdatePassword from './components/user/UpdatePassword';
+
 
 import ProtectedRoute from './components/route/ProtectedRoute';
 import { loadUser } from './actions/userActions';
@@ -49,6 +51,14 @@ export default function App() {
         <Route path="/me/update" element={
           isAuthenticated ? (
             <UpdateProfile />
+          ) : (
+            <Navigate replace to="/login" />
+          )
+        } />
+
+        <Route path="/password/update" element={
+          isAuthenticated ? (
+            <UpdatePassword />
           ) : (
             <Navigate replace to="/login" />
           )

@@ -12,6 +12,7 @@ import Register from './components/user/Register';
 import Profile from './components/user/Profile';
 import UpdateProfile from './components/user/UpdateProfile';
 import UpdatePassword from './components/user/UpdatePassword';
+import ForgotPassword from './components/user/ForgotPassword';
 
 
 import ProtectedRoute from './components/route/ProtectedRoute';
@@ -37,8 +38,9 @@ export default function App() {
         <Route path="/product/:id" element={<ProductDetails />} exact />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/password/forgot" element={<ForgotPassword />} exact />
 
-        // TODO: How to make this route more consise?
+// TODO: How to make this route more consise?
 
         <Route path="/me" element={
           isAuthenticated ? (

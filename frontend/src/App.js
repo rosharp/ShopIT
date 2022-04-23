@@ -13,6 +13,7 @@ import Profile from './components/user/Profile';
 import UpdateProfile from './components/user/UpdateProfile';
 import UpdatePassword from './components/user/UpdatePassword';
 import ForgotPassword from './components/user/ForgotPassword';
+import NewPassword from './components/user/NewPassword';
 
 
 import ProtectedRoute from './components/route/ProtectedRoute';
@@ -39,6 +40,8 @@ export default function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/password/forgot" element={<ForgotPassword />} exact />
+        <Route path="/password/reset/:token" element={<NewPassword />} exact />
+
 
 // TODO: How to make this route more consise?
 

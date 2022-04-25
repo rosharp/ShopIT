@@ -4,13 +4,17 @@ import { Link } from 'react-router-dom';
 import MetaData from '../layout/MetaData';
 
 import { useDispatch, useSelector } from 'react-redux'
-import { addItemToCart } from '../../actions/cartActions'
 import { useAlert } from 'react-alert'
 
+import { addItemToCart, removeItemFromCart } from '../../actions/cartActions'
 
 export default function Cart() {
   const dispatch = useDispatch();
   const { cartItems } = useSelector(state => state.cart);
+
+  const removeCartItemHandler = (id) => {
+    dispatch(removeItemFromCart(id))
+  }
 
   const increaseQty = (id, quantity, stock) => {
     const newQty = quantity + 1;
@@ -44,7 +48,7 @@ export default function Cart() {
                 <Fragment>
                   <hr />
 
-                  <div className="cart-item">
+                  <div className="cart-item" key={item.product}>
                     <div className="row">
                       <div className="col-4 col-lg-3">
                         <img src={item.image} alt="Laptop" height="90" width="115" />
@@ -69,7 +73,7 @@ export default function Cart() {
                       </div>
 
                       <div className="col-4 col-lg-1 mt-4 mt-lg-0">
-                        <i id="delete_cart_item" className="fa fa-trash btn btn-danger"></i>
+                        <i id="delete_cart_item" className="fa fa-trash btn btn-danger" onClick={() => removeCartItemHandler(item.product)}></i>
                       </div>
 
                     </div>

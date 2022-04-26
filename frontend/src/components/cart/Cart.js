@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import MetaData from '../layout/MetaData';
 
@@ -9,6 +9,8 @@ import { useAlert } from 'react-alert'
 import { addItemToCart, removeItemFromCart } from '../../actions/cartActions'
 
 export default function Cart() {
+
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { cartItems } = useSelector(state => state.cart);
 
@@ -30,6 +32,11 @@ export default function Cart() {
     if (newQty <= 0) return;
 
     dispatch(addItemToCart(id, newQty))
+  }
+
+  const checkoutHandler = () => {
+    //  history.push('/login?redirect=shipping')
+    navigate('/shipping');
   }
 
   return (
@@ -98,7 +105,7 @@ export default function Cart() {
                 </p>
 
                 <hr />
-                <button id="checkout_btn" className="btn btn-primary btn-block">Check out</button>
+                <button id="checkout_btn" className="btn btn-primary btn-block" onClick={checkoutHandler}>Check out</button>
               </div>
             </div>
           </div>

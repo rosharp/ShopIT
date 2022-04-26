@@ -8,6 +8,7 @@ import Home from './components/Home';
 import ProductDetails from './components/product/ProductDetails';
 
 import Cart from './components/cart/Cart';
+import Shipping from './components/cart/Shipping'
 
 import Login from './components/user/login';
 import Register from './components/user/Register';
@@ -35,16 +36,16 @@ export default function App() {
     <Router className="App">
       <Header />
       <Routes className="container container-fluid">
-        <Route path="/" element={<Home />} exact />
-        <Route path="/search/:keyword" element={<Home />} />
-        <Route path="/product/:id" element={<ProductDetails />} exact />
+        <Route index path="/" element={<Home />} exact />
+        <Route path="search/:keyword" element={<Home />} />
+        <Route path="product/:id" element={<ProductDetails />} exact />
 
-        <Route path="/cart" element={<Cart />} exact />
+        <Route path="cart" element={<Cart />} exact />
 
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/password/forgot" element={<ForgotPassword />} exact />
-        <Route path="/password/reset/:token" element={<NewPassword />} exact />
+        <Route path="login" element={<Login />} />
+        <Route path="register" element={<Register />} />
+        <Route path="password/forgot" element={<ForgotPassword />} exact />
+        <Route path="password/reset/:token" element={<NewPassword />} exact />
 
 
 // TODO: How to make this route more consise?
@@ -72,6 +73,15 @@ export default function App() {
             <Navigate replace to="/login" />
           )
         } />
+
+        <Route path="/shipping" element={
+          isAuthenticated ? (
+            <Shipping />
+          ) : (
+            <Navigate replace to="/login" />
+          )
+        } />
+
 
 
 

@@ -8,7 +8,6 @@ import MetaData from '../layout/MetaData';
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 
-
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -27,12 +26,12 @@ function Login() {
 
   useEffect(() => {
     if (isAuthenticated) {
-      navigate('/');
+      navigate(redirect);
     }
 
     if (error) {
       alert.error(error)
-      dispatch(clearErrors)
+      dispatch(clearErrors())
     }
   }, [dispatch, alert, isAuthenticated, navigate, error])
 

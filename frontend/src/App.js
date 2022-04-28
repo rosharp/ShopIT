@@ -9,8 +9,9 @@ import ProductDetails from './components/product/ProductDetails';
 
 import Cart from './components/cart/Cart';
 import Shipping from './components/cart/Shipping'
+import ConfirmOrder from './components/cart/ConfirmOrder';
 
-import Login from './components/user/login';
+import Login from './components/user/Login';
 import Register from './components/user/Register';
 import Profile from './components/user/Profile';
 import UpdateProfile from './components/user/UpdateProfile';
@@ -26,11 +27,11 @@ import { useSelector } from "react-redux";
 
 export default function App() {
 
-  const { isAuthenticated, loading, user } = useSelector(state => state.auth)
-
   useEffect(() => {
     store.dispatch(loadUser())
   }, [])
+
+  const { isAuthenticated, loading, user } = useSelector(state => state.auth)
 
   return (
     <Router className="App">
@@ -81,6 +82,16 @@ export default function App() {
             <Navigate replace to="/login" />
           )
         } />
+
+        <Route path="/order/confirm" element={
+          isAuthenticated ? (
+            <ConfirmOrder />
+          ) : (
+            <Navigate replace to="/login" />
+          )
+        } />
+
+
 
 
 

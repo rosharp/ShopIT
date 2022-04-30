@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 
 import Header from './components/layout/Header';
@@ -22,16 +22,27 @@ import NewPassword from './components/user/NewPassword';
 
 import { loadUser } from './actions/userActions';
 import store from './store';
+import axios from 'axios';
 
 import { useSelector } from "react-redux";
 
 export default function App() {
 
+  const { isAuthenticated, loading, user } = useSelector(state => state.auth)
+
+  const [stripeApiKey, setStripeApiKey] = useState('');
+
   useEffect(() => {
     store.dispatch(loadUser())
+
+    async function getStripeApiKey() {
+      const { data } = await axios.get('/api/v1/stripeapi');
+      setStripeApiKey(data.stripeApiKey);
+    }
+
+    getStripeApiKey();
   }, [])
 
-  const { isAuthenticated, loading, user } = useSelector(state => state.auth)
 
   return (
     <Router className="App">
@@ -90,11 +101,6 @@ export default function App() {
             <Navigate replace to="/login" />
           )
         } />
-
-
-
-
-
 
       </Routes>
       <Footer />

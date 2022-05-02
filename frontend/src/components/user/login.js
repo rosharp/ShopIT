@@ -33,7 +33,7 @@ function Login() {
       alert.error(error)
       dispatch(clearErrors())
     }
-  }, [dispatch, alert, isAuthenticated, navigate, error])
+  }, [dispatch, alert, isAuthenticated, redirect, navigate, error])
 
   const submitHandler = (e) => {
     e.preventDefault();

@@ -11,6 +11,8 @@ import Cart from './components/cart/Cart';
 import Shipping from './components/cart/Shipping'
 import ConfirmOrder from './components/cart/ConfirmOrder';
 import Payment from './components/cart/Payment';
+import OrderSuccess from './components/cart/OrderSuccess';
+
 
 import Login from './components/user/Login';
 import Register from './components/user/Register';
@@ -68,6 +70,8 @@ export default function App() {
         <Route path="/password/update" element={isAuthenticated ? (<UpdatePassword />) : (<Navigate replace to="/login" />)} />
         <Route path="/shipping" element={isAuthenticated ? (<Shipping />) : (<Navigate replace to="/login" />)} />
         <Route path="/order/confirm" element={isAuthenticated ? (<ConfirmOrder />) : (<Navigate replace to="/login" />)} />
+        <Route path="/success" element={isAuthenticated ? (<OrderSuccess />) : (<Navigate replace to="/login" />)} />
+
 
         {stripeApiKey &&
           <Route path="/payment" element={isAuthenticated ? (<Elements stripe={loadStripe(stripeApiKey)}><Payment /></Elements>) : (<Navigate replace to="/login" />)} />

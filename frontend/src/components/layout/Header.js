@@ -1,5 +1,3 @@
-// TODO: keeping user auth state
-
 import React, { Fragment } from "react";
 import { Route, Routes, Link } from "react-router-dom";
 import Search from './Search';
@@ -65,11 +63,11 @@ const Header = () => {
               </Link>
 
               <div className="dropdown-menu" aria-labelledby="dropDownMenuButton">
-                {user && user.role !== 'Admin' ? (
-                  <Link className="dropdown-item" to="/orders/me">Orders</Link>
-                ) : (
+
+                {user && user.role === 'Admin' && (
                   <Link className="dropdown-item" to="/dashboard">Dashboard</Link>
                 )}
+
                 <Link className="dropdown-item" to="/me">Profile</Link>
                 <Link className="dropdown-item text-danger" to="/" onClick={logoutHandler}>Logout</Link>
               </div>

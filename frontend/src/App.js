@@ -13,6 +13,8 @@ import ConfirmOrder from './components/cart/ConfirmOrder';
 import Payment from './components/cart/Payment';
 import OrderSuccess from './components/cart/OrderSuccess';
 
+import ListOrders from './components/order/ListOrders';
+import OrderDetails from './components/order/OrderDetails';
 
 import Login from './components/user/Login';
 import Register from './components/user/Register';
@@ -71,6 +73,11 @@ export default function App() {
         <Route path="/shipping" element={isAuthenticated ? (<Shipping />) : (<Navigate replace to="/login" />)} />
         <Route path="/order/confirm" element={isAuthenticated ? (<ConfirmOrder />) : (<Navigate replace to="/login" />)} />
         <Route path="/success" element={isAuthenticated ? (<OrderSuccess />) : (<Navigate replace to="/login" />)} />
+
+        <Route path="/orders/me" element={isAuthenticated ? (<ListOrders />) : (<Navigate replace to="/login" />)} />
+        <Route path="/order/:id" element={isAuthenticated ? (<OrderDetails />) : (<Navigate replace to="/login" />)} />
+
+
 
 
         {stripeApiKey &&

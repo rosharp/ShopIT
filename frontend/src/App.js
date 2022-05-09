@@ -33,6 +33,7 @@ import axios from 'axios';
 
 // Admin imports
 import Dashboard from "../src/components/admin/Dashboard";
+import ProductsList from "../src/components/admin/ProductsList";
 
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
@@ -84,6 +85,8 @@ export default function App() {
         <Route path="/order/:id" element={isAuthenticated ? (<OrderDetails />) : (<Navigate replace to="/login" />)} />
 
         <Route path="/dashboard" element={isAuthenticated && user.role !== 'admin' ? (<Dashboard />) : (<Navigate replace to="/login" />)} />
+        <Route path="/admin/products" element={isAuthenticated && user.role !== 'admin' ? (<ProductsList />) : (<Navigate replace to="/login" />)} />
+
 
 
 

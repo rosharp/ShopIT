@@ -1,16 +1,16 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
 
 const productSchema = new mongoose.Schema({
   name: {
     type: String,
     required: [true, 'Please enter product name'],
     trim: true,
-    maxlength: [100, 'Product name cannot exceed 100 characters']
+    maxLength: [100, 'Product name cannot exceed 100 characters']
   },
   price: {
     type: Number,
     required: [true, 'Please enter product price'],
-    maxlength: [5, 'Product price cannot exceed 5 characters'],
+    maxLength: [5, 'Product name cannot exceed 5 characters'],
     default: 0.0
   },
   description: {
@@ -30,9 +30,10 @@ const productSchema = new mongoose.Schema({
       url: {
         type: String,
         required: true
-      }
+      },
     }
   ],
+
   category: {
     type: String,
     required: [true, 'Please select category for this product'],
@@ -44,14 +45,14 @@ const productSchema = new mongoose.Schema({
         'Accessories',
         'Headphones',
         'Food',
-        'Books',
-        'Clothes/Soes',
+        "Books",
+        'Clothes/Shoes',
         'Beauty/Health',
         'Sports',
         'Outdoor',
         'Home'
       ],
-      message: 'Please select correct category for product.'
+      message: 'Please select correct category for product'
     }
   },
   seller: {
@@ -61,7 +62,7 @@ const productSchema = new mongoose.Schema({
   stock: {
     type: Number,
     required: [true, 'Please enter product stock'],
-    maxlength: [5, 'Product name canot exeed 5 characters'],
+    maxLength: [5, 'Product name cannot exceed 5 characters'],
     default: 0
   },
   numOfReviews: {

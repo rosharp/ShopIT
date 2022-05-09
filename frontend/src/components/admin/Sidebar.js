@@ -5,7 +5,7 @@ export default function Sidebar() {
   return (
     <div>
       <div className="row">
-        <div className="com-md-8 col-lg-14">
+        <div className="com-md-10 col-lg-12">
           <div className="sidebar-wrapper">
             <nav id="sidebar">
               <ul className="list-unstyled components">
@@ -15,7 +15,7 @@ export default function Sidebar() {
 
                 <li>
                   <a href="#productSubmenu" data-toggle="collapse" aria-expanded="false" className="dropdown-toggle"><i
-                    className="fab fa-product-hunt"></i> Products</a>
+                    className="fa fa-product-hunt"></i> Products</a>
                   <ul className="collapse list-unstyled" id="productSubmenu">
                     <li>
                       <Link to="/admin/products"><i className="fa fa-clipboard"></i> All</Link>
@@ -36,7 +36,7 @@ export default function Sidebar() {
                 </li>
 
                 <li>
-                  <Link to="/admin/reviews"><i className="fa fa-stars"></i> Users</Link>
+                  <Link to="/admin/reviews"><i className="fa fa-star"></i> Users</Link>
                 </li>
 
 

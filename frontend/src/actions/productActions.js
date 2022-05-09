@@ -7,15 +7,18 @@ import {
   ADMIN_PRODUCTS_REQUEST,
   ADMIN_PRODUCTS_SUCCESS,
   ADMIN_PRODUCTS_FAIL,
-
+  NEW_PRODUCT_REQUEST,
+  NEW_PRODUCT_SUCCESS,
+  NEW_PRODUCT_RESET,
+  NEW_PRODUCT_FAIL,
   PRODUCTS_DETAILS_REQUEST,
   PRODUCTS_DETAILS_SUCCESS,
   PRODUCTS_DETAILS_FAIL,
   NEW_REVIEW_REQUEST,
   NEW_REVIEW_SUCCESS,
-  NEW_REVIEW_RESET,
   NEW_REVIEW_FAIL,
   CLEAR_ERRORS
+
 } from '../constants/productConstants';
 
 export const getProducts = (keyword = '', currentPage = 1, price, category, rating = 0, seller) => async (dispatch) => {
@@ -42,6 +45,32 @@ export const getProducts = (keyword = '', currentPage = 1, price, category, rati
   } catch (error) {
     dispatch({
       type: ALL_PRODUCTS_FAIL,
+      payload: error.response.data.message
+    })
+  }
+}
+
+export const newProduct = (productData) => async (dispatch) => {
+  try {
+
+    dispatch({ type: NEW_PRODUCT_REQUEST })
+
+    const config = {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }
+
+    const { data } = await axios.put(`/api/v1/product/new`, productData, config)
+
+    dispatch({
+      type: NEW_PRODUCT_SUCCESS,
+      payload: data
+    })
+
+  } catch (error) {
+    dispatch({
+      type: NEW_PRODUCT_FAIL,
       payload: error.response.data.message
     })
   }

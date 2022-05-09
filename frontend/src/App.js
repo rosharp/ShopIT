@@ -7,12 +7,14 @@ import Footer from './components/layout/Footer';
 import Home from './components/Home';
 import ProductDetails from './components/product/ProductDetails';
 
+// Cart imports
 import Cart from './components/cart/Cart';
 import Shipping from './components/cart/Shipping'
 import ConfirmOrder from './components/cart/ConfirmOrder';
 import Payment from './components/cart/Payment';
 import OrderSuccess from './components/cart/OrderSuccess';
 
+// Order imports
 import ListOrders from './components/order/ListOrders';
 import OrderDetails from './components/order/OrderDetails';
 
@@ -24,10 +26,13 @@ import UpdatePassword from './components/user/UpdatePassword';
 import ForgotPassword from './components/user/ForgotPassword';
 import NewPassword from './components/user/NewPassword';
 
-
+// Auth or User imports
 import { loadUser } from './actions/userActions';
 import store from './store';
 import axios from 'axios';
+
+// Admin imports
+import Dashboard from "../src/components/admin/Dashboard";
 
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
@@ -36,7 +41,8 @@ import { useSelector } from "react-redux";
 
 export default function App() {
 
-  const { isAuthenticated, loading, user } = useSelector(state => state.auth)
+  // TODO: isAdmin => make it like isAuthenticated through the props/state somehow
+  const { isAuthenticated, user } = useSelector(state => state.auth)
 
   const [stripeApiKey, setStripeApiKey] = useState('');
 
@@ -76,6 +82,9 @@ export default function App() {
 
         <Route path="/orders/me" element={isAuthenticated ? (<ListOrders />) : (<Navigate replace to="/login" />)} />
         <Route path="/order/:id" element={isAuthenticated ? (<OrderDetails />) : (<Navigate replace to="/login" />)} />
+
+        <Route path="/dashboard" element={isAuthenticated && user.role !== 'admin' ? (<Dashboard />) : (<Navigate replace to="/login" />)} />
+
 
 
 

@@ -1,4 +1,4 @@
-import { useEffect, useState, Fragment } from 'react';
+import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 
 import Header from './components/layout/Header';
@@ -6,6 +6,7 @@ import Footer from './components/layout/Footer';
 
 import Home from './components/Home';
 import ProductDetails from './components/product/ProductDetails';
+import NewProduct from './components/admin/NewProduct';
 
 // Cart imports
 import Cart from './components/cart/Cart';
@@ -43,7 +44,7 @@ import { useSelector } from "react-redux";
 export default function App() {
 
   // TODO: isAdmin => make it like isAuthenticated through the props/state somehow
-  const { isAuthenticated, user } = useSelector(state => state.auth)
+  const { isAuthenticated, user, loading } = useSelector(state => state.auth)
 
   const [stripeApiKey, setStripeApiKey] = useState('');
 
@@ -57,7 +58,6 @@ export default function App() {
 
     getStripeApiKey();
   }, [])
-
 
   return (
     <Router className="App">
@@ -86,9 +86,7 @@ export default function App() {
 
         <Route path="/dashboard" element={isAuthenticated && user.role !== 'admin' ? (<Dashboard />) : (<Navigate replace to="/login" />)} />
         <Route path="/admin/products" element={isAuthenticated && user.role !== 'admin' ? (<ProductsList />) : (<Navigate replace to="/login" />)} />
-
-
-
+        <Route path="/admin/product" element={isAuthenticated && user.role !== 'admin' ? (<NewProduct />) : (<Navigate replace to="/login" />)} />
 
 
 
@@ -98,7 +96,9 @@ export default function App() {
 
 
       </Routes>
+
       <Footer />
+
     </Router>
   );
 }

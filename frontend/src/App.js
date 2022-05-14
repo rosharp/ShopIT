@@ -7,6 +7,7 @@ import Footer from './components/layout/Footer';
 import Home from './components/Home';
 import ProductDetails from './components/product/ProductDetails';
 import NewProduct from './components/admin/NewProduct';
+import UpdateProduct from './components/admin/UpdateProduct';
 
 // Cart imports
 import Cart from './components/cart/Cart';
@@ -87,6 +88,8 @@ export default function App() {
         <Route path="/dashboard" element={isAuthenticated && user.role !== 'admin' ? (<Dashboard />) : (<Navigate replace to="/login" />)} />
         <Route path="/admin/products" element={isAuthenticated && user.role !== 'admin' ? (<ProductsList />) : (<Navigate replace to="/login" />)} />
         <Route path="/admin/product" element={isAuthenticated && user.role !== 'admin' ? (<NewProduct />) : (<Navigate replace to="/login" />)} />
+        <Route path="/admin/product/:id" element={isAuthenticated && user.role !== 'admin' ? (<UpdateProduct />) : (<Navigate replace to="/login" />)} />
+
 
 
 

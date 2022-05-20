@@ -36,7 +36,7 @@ export default function Sidebar() {
                 </li>
 
                 <li>
-                  <Link to="/admin/reviews"><i className="fa fa-star"></i> Users</Link>
+                  <Link to="/admin/reviews"><i className="fa fa-star"></i> Reviews</Link>
                 </li>
 
 

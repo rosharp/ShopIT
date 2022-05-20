@@ -11,6 +11,7 @@ import UpdateProduct from './components/admin/UpdateProduct';
 import OrdersList from './components/admin/OrdersList';
 import ProcessOrder from './components/admin/ProcessOrder';
 import UsersList from './components/admin/UsersList';
+import UpdateUser from './components/admin/UpdateUser';
 
 // Cart imports
 import Cart from './components/cart/Cart';
@@ -95,6 +96,7 @@ export default function App() {
         <Route path="/admin/orders/" element={isAuthenticated && user.role !== 'admin' ? (<OrdersList />) : (<Navigate replace to="/login" />)} />
         <Route path="/admin/order/:id" element={isAuthenticated && user.role !== 'admin' ? (<ProcessOrder /> ) : (<Navigate replace to="/login" />)} />
         <Route path="/admin/users/" element={isAuthenticated && user.role !== 'admin' ? (<UsersList />) : (<Navigate replace to="/login" />)} />
+        <Route path="/admin/user/:id" element={isAuthenticated && user.role !== 'admin' ? (<UpdateUser /> ) : (<Navigate replace to="/login" />)} />
 
         {stripeApiKey &&
           <Route path="/payment" element={isAuthenticated ? (<Elements stripe={loadStripe(stripeApiKey)}><Payment /></Elements>) : (<Navigate replace to="/login" />)} />

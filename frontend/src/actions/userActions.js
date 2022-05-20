@@ -12,14 +12,17 @@ import {
   LOAD_USER_FAIL,
   UPDATE_PROFILE_REQUEST,
   UPDATE_PROFILE_SUCCESS,
-  UPDATE_PROFILE_RESET,
   UPDATE_PROFILE_FAIL,
   UPDATE_PASSWORD_REQUEST,
   UPDATE_PASSWORD_SUCCESS,
-  UPDATE_PASSWORD_RESET,
   UPDATE_PASSWORD_FAIL,
+  UPDATE_USER_REQUEST,
+  UPDATE_USER_SUCCESS,
+  UPDATE_USER_FAIL,
+  USER_DETAILS_REQUEST,
+  USER_DETAILS_SUCCESS,
+  USER_DETAILS_FAIL,
   FORGOT_PASSWORD_REQUEST,
-  FORGOT_PASSWORD_SUCCESS,
   FORGOT_PASSWORD_FAIL,
   NEW_PASSWORD_REQUEST,
   NEW_PASSWORD_SUCCESS,
@@ -138,9 +141,7 @@ export const logout = () => async (dispatch) => {
 export const allUsers = () => async (dispatch) => {
 
   try {
-    dispatch({
-      type: ALL_USERS_REQUEST,
-    })
+    dispatch({ type: ALL_USERS_REQUEST })
 
     const { data } = await axios.get('/api/v1/admin/users')
 
@@ -276,7 +277,54 @@ export const resetPassword = (token, passwords, email) => async (dispatch) => {
   }
 }
 
+// Update user - ADMIN
+export const updateUser = (id, userData) => async (dispatch) => {
+  try {
 
+    dispatch({ type: UPDATE_USER_REQUEST })
+
+    const config = {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }
+
+    const { data } = await axios.put(`/api/v1/admin/user/${id}`, userData, config)
+
+    dispatch({
+      type: UPDATE_USER_SUCCESS,
+      payload: data.success
+    })
+
+  } catch (error) {
+    dispatch({
+      type: UPDATE_USER_FAIL,
+      payload: error.response.data.message
+    })
+  }
+}
+
+// Get user details - ADMIN
+export const getUserDetails = (id) => async (dispatch) => {
+  try {
+
+    dispatch({ type: USER_DETAILS_REQUEST })
+
+
+    const { data } = await axios.get(`/api/v1/admin/user/${id}`)
+
+    dispatch({
+      type: USER_DETAILS_SUCCESS,
+      payload: data.user
+    })
+
+  } catch (error) {
+    dispatch({
+      type: USER_DETAILS_FAIL,
+      payload: error.response.data.message
+    })
+  }
+}
 
 // Clear Errors
 export const clearErrors = () => async (dispatch) => {

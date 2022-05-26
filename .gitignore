@@ -38,6 +38,7 @@ Thumbs.db
 # Editor files #
 ################
 .vscodium
+.vscode
 
 # Node #
 node_modules/

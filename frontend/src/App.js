@@ -109,9 +109,9 @@ export default function App() {
 
       </Routes>
 
-      {!loading && (!isAuthenticated || user.role !== 'admin' && (
+      {!loading && (!isAuthenticated || user.role !== 'admin') && (
         <Footer />
-      ))}
+      )}
 
 
     </Router>

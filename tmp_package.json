@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "E-Commerce website using MERN",
   "main": "server.js",
+  "engines": {
+    "node": "16.13.x",
+    "npm": "8.1.x"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node backend/server.js",

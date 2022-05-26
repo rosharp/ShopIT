@@ -20,9 +20,7 @@ function Login() {
 
   const { isAuthenticated, error, loading } = useSelector(state => state.auth);
 
-  const redirect = location.search
-    ? location.search.split('=')[1]
-    : '/';
+  const redirect = location.search ? location.search.split('=')[1] : '/'
 
   useEffect(() => {
     if (isAuthenticated) {

@@ -13,6 +13,7 @@
   "author": "Ro Sharp",
   "license": "ISC",
   "dependencies": {
+    "@reduxjs/toolkit": "^1.8.1",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.2",
     "cloudinary": "^1.29.1",
@@ -23,6 +24,7 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.2.7",
     "nodemailer": "^6.7.3",
+    "redux-persist": "^6.0.0",
     "stripe": "^8.219.0",
     "validator": "^13.7.0"
   },

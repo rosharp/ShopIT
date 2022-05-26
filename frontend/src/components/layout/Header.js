@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { Route, Routes, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Search from './Search';
 import '../../App.css';
 
@@ -26,14 +26,14 @@ const Header = () => {
         <div className="col-12 col-md-3">
           <div className="navbar-brand">
             <Link to="/">
-              <img src="./images/shopit_logo.png" />
+              <img src="./images/shopit_logo.png" alt="shopit-logo" />
             </Link>
           </div>
         </div>
 
-        <Routes className="col-12 col-md-6 mt-2 mt-md-0">
-          <Route render={({ navigate }) => <Search navigate={navigate} />} />
-        </Routes>
+        <div className="col-12 col-md-6 mt-2 mt-md-0">
+          <Search />
+        </div>
 
         <div className="col-12 col-md-3 mt-4 mt-md-0 text-center">
           <Link to="/cart" style={{ textDecoration: 'none' }}>

@@ -47,8 +47,10 @@ import { loadStripe } from '@stripe/stripe-js';
 
 import { useSelector } from "react-redux";
 
+
 export default function App() {
 
+  // TODO: add loading for the footer
   const { isAuthenticated, user } = useSelector(state => state.auth)
 
   const [stripeApiKey, setStripeApiKey] = useState('');
@@ -108,6 +110,7 @@ export default function App() {
       </Routes>
 
       <Footer />
+
 
     </Router>
   );

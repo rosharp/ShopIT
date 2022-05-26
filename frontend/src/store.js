@@ -1,6 +1,7 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
+import { cartReducer } from "./reducers/cartReducers";
 
 import {
   productsReducer,
@@ -11,6 +12,7 @@ import {
   productReviewsReducer,
   reviewReducer
 } from "./reducers/productsReducer";
+
 import {
   authReducer,
   userReducer,
@@ -18,7 +20,7 @@ import {
   allUsersReducer,
   userDetailsReducer,
 } from "./reducers/userReducers";
-import { cartReducer } from "./reducers/cartReducers";
+
 import {
   newOrderReducer,
   myOrdersReducer,
@@ -57,7 +59,7 @@ let initialState = {
       ? JSON.parse(localStorage.getItem("shippingInfo"))
       : {},
   },
-};
+}
 
 const middleware = [thunk];
 const store = createStore(

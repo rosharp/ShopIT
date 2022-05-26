@@ -1,74 +1,86 @@
-import React, { Fragment, useEffect, useState } from 'react'
-import { register, clearErrors } from '../../actions/userActions';
-import { useNavigate } from 'react-router-dom';
+import React, { Fragment, useState, useEffect } from "react";
 
-import MetaData from '../layout/MetaData';
+import MetaData from "../layout/MetaData";
 
-import { useAlert } from 'react-alert'
-import { useDispatch, useSelector } from 'react-redux'
+import { useAlert } from "react-alert";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { register, clearErrors } from "../../actions/userActions";
 
-export default function Register() {
-
+const Register = () => {
   const [user, setUser] = useState({
-    name: '',
-    email: '',
-    password: '',
-  })
+    name: "",
+    email: "",
+    password: "",
+  });
+
+  const navigate = useNavigate();
 
   const { name, email, password } = user;
-  const [avatar, setAvatar] = useState('');
-  const [avatarPreview, setAvatarPreview] = useState('/images/default_avatar.jpg');
 
-  const alert = useAlert()
+  const [avatar, setAvatar] = useState("");
+  const [avatarPreview, setAvatarPreview] = useState(
+    "/images/default_avatar.jpg"
+  );
+
+  const alert = useAlert();
   const dispatch = useDispatch();
 
-  let navigate = useNavigate();
-
-  const { isAuthenticated, error, loading } = useSelector(state => state.auth);
+  const { isAuthenticated, error, loading } = useSelector(
+    (state) => state.auth
+  );
 
   useEffect(() => {
     if (isAuthenticated) {
-      navigate('/');
+      navigate("/");
     }
 
     if (error) {
-      alert.error(error)
-      dispatch(clearErrors)
+      alert.error(error);
+      dispatch(clearErrors());
     }
-  }, [dispatch, alert, isAuthenticated, navigate, error])
+  }, [dispatch, alert, isAuthenticated, error, navigate]);
 
   const submitHandler = (e) => {
     e.preventDefault();
+
     const formData = new FormData();
-    formData.set('name', name);
-    formData.set('email', email);
-    formData.set('password', password);
-    formData.set('avatar', avatar);
+    formData.set("name", name);
+    formData.set("email", email);
+    formData.set("password", password);
+    formData.set("avatar", avatar);
 
-    dispatch(register(formData))
-  }
+    dispatch(register(formData));
+  };
 
-  const onChange = e => {
-    if (e.target.name === 'avatar') {
+  const onChange = (e) => {
+    if (e.target.name === "avatar") {
       const reader = new FileReader();
+
       reader.onload = () => {
         if (reader.readyState === 2) {
           setAvatarPreview(reader.result);
           setAvatar(reader.result);
         }
-      }
+      };
+
       reader.readAsDataURL(e.target.files[0]);
     } else {
       setUser({ ...user, [e.target.name]: e.target.value });
     }
-  }
+  };
 
   return (
     <Fragment>
-      <MetaData title={'Register User'} />
+      <MetaData title={"Register User"} />
+
       <div className="row wrapper">
         <div className="col-10 col-lg-5">
-          <form className="shadow-lg" onSubmit={submitHandler} encType='multipart/form-data'>
+          <form
+            className="shadow-lg"
+            onSubmit={submitHandler}
+            encType="multipart/form-data"
+          >
             <h1 className="mb-3">Register</h1>
 
             <div className="form-group">
@@ -77,7 +89,7 @@ export default function Register() {
                 type="name"
                 id="name_field"
                 className="form-control"
-                name='name'
+                name="name"
                 value={name}
                 onChange={onChange}
               />
@@ -89,7 +101,7 @@ export default function Register() {
                 type="email"
                 id="email_field"
                 className="form-control"
-                name='email'
+                name="email"
                 value={email}
                 onChange={onChange}
               />
@@ -101,35 +113,34 @@ export default function Register() {
                 type="password"
                 id="password_field"
                 className="form-control"
-                name='password'
+                name="password"
                 value={password}
                 onChange={onChange}
-
               />
             </div>
 
-            <div className='form-group'>
-              <label htmlFor='avatar_upload'>Avatar</label>
-              <div className='d-flex align-items-center'>
+            <div className="form-group">
+              <label htmlFor="avatar_upload">Avatar</label>
+              <div className="d-flex align-items-center">
                 <div>
-                  <figure className='avatar mr-3 item-rtl'>
+                  <figure className="avatar mr-3 item-rtl">
                     <img
                       src={avatarPreview}
-                      className='rounded-circle'
-                      alt='Avatar Preview'
+                      className="rounded-circle"
+                      alt="Avatar Preview"
                     />
                   </figure>
                 </div>
-                <div className='custom-file'>
+                <div className="custom-file">
                   <input
-                    type='file'
-                    name='avatar'
-                    className='custom-file-input'
-                    id='customFile'
-                    accept="images/*"
+                    type="file"
+                    name="avatar"
+                    className="custom-file-input"
+                    id="customFile"
+                    accept="iamges/*"
                     onChange={onChange}
                   />
-                  <label className='custom-file-label' htmlFor='customFile'>
+                  <label className="custom-file-label" htmlFor="customFile">
                     Choose Avatar
                   </label>
                 </div>
@@ -149,4 +160,6 @@ export default function Register() {
       </div>
     </Fragment>
   );
-}
+};
+
+export default Register;

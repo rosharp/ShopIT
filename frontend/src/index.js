@@ -21,7 +21,7 @@ const root = ReactDOMClient.createRoot(container);
 root.render(
   <Provider store={store}>
     <AlertProvider template={AlertTemplate} {...options}>
-      <App />
+        <App />
     </AlertProvider>
   </Provider>
 );

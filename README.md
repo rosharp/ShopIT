@@ -2,7 +2,7 @@
 
 > Complete Ecommerce site built with Node.js, React, Redux, Express, MongoDB
 
-## Project API: [https://documenter.getpostman.com/view/13756972/TzJydbZr](https://documenter.getpostman.com/view/13756972/TzJydbZr)
+**Project API**: [https://documenter.getpostman.com/view/13756972/TzJydbZr](https://documenter.getpostman.com/view/13756972/TzJydbZr)
 
 ## Env Variables
 
